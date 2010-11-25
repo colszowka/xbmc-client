@@ -1,9 +1,12 @@
 # Representation of a XBMC JSON RPC method
 class Xbmc::Command
-  attr_reader :command, :namespace, :method_name, :original_method
+  attr_reader :command, :namespace, :method_name, :original_method, :description
 
-  def initialize(command)
-    @command = command
+  # Initializes a new command from the meta data hash given in JSONRPC.Introspect
+  def initialize(command_meta)
+    @command_meta = command_meta.with_indifferent_access
+    @description = command_meta[:description]
+    @command = command_meta[:command]
     parse_command!
   end
 
@@ -11,7 +14,12 @@ class Xbmc::Command
   def invoke(params={})
     process_result(Xbmc.invoke_and_process(command, params))
   end
-
+  
+  # The ruby class name this command should end up in
+  def klass_name
+    "Xbmc::#{namespace}"
+  end
+  
   private
 
   # Extract the namespace and method names from the given JSON RPC raw command name
@@ -23,7 +31,6 @@ class Xbmc::Command
   # Will create the corresponding class for namespace if not defined yet
   # and also define the given method
   def define_method!
-    klass_name = "Xbmc::#{namespace}"
     begin
       klass = klass_name.constantize
     rescue NameError => err

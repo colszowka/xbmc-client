@@ -35,7 +35,7 @@ class Xbmc
 
     # Returns an array of available api commands instantiated as Xbmc::Command objects
     def commands
-      @commands ||= invoke_and_process("JSONRPC.Introspect", :getdescriptions => true)[:commands].map {|c| Xbmc::Command.new(c[:command])}
+      @commands ||= invoke_and_process("JSONRPC.Introspect", :getdescriptions => true)[:commands].map {|c| Xbmc::Command.new(c)}
     end
 
     # Loads the available commands via JSONRPC.Introspect and defines the namespace classes and corresponding methods

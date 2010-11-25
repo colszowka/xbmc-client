@@ -57,3 +57,22 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
+
+namespace :rdoc do
+  desc "Generates an RDOC-formatted list of available commands"
+  task :apidoc do
+    require File.join(File.dirname(__FILE__), 'lib/xbmc-client')
+    # Configure to your settings!
+    Xbmc.base_uri "http://localhost:8435"
+    Xbmc.basic_auth "xbmc", "xbmc"
+    
+    puts "== Available API Methods", ""
+    puts "Please note that the API is loaded dynamically and thus this ultimately depends on your version of XBMC. This listing is generated automatically using <code>rake rdoc:apidoc</code>", ""
+    
+    Xbmc.commands.each do |command|
+      puts "=== #{command.klass_name}.#{command.method_name}"
+      puts "\n#{command.description}" if command.description.present?
+      puts
+    end
+  end
+end

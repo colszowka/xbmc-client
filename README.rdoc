@@ -58,6 +58,376 @@ See the examples directory in the repository for further usage examples!
 Also, be sure to check out the API docs at the XBMC wiki: 
 http://wiki.xbmc.org/index.php?title=JSON_RPC
 
+== Available API Methods
+
+Please note that the API is loaded dynamically and thus this ultimately depends on your version of XBMC. This listing is generated automatically using <code>rake rdoc:apidoc</code>
+
+=== Xbmc::JSONRPC.introspect
+
+Enumerates all actions and descriptions. Parameter example {"getdescriptions": true, "getpermissions": true, "filterbytransport": true }. All parameters optional
+
+=== Xbmc::JSONRPC.version
+
+Retrieve the jsonrpc protocol version
+
+=== Xbmc::JSONRPC.permission
+
+Retrieve the clients permissions
+
+=== Xbmc::JSONRPC.ping
+
+Ping responder
+
+=== Xbmc::JSONRPC.announce
+
+Announce to other connected clients. Parameter example {"sender": "foo", "message": "bar", "data": "somedata" }. data is optional
+
+=== Xbmc::Player.get_active_players
+
+Returns all active players IDs
+
+=== Xbmc::AudioPlayer.state
+
+Returns Current Playback state
+
+=== Xbmc::AudioPlayer.play_pause
+
+Pauses or unpause playback, returns new state
+
+=== Xbmc::AudioPlayer.stop
+
+Stops playback
+
+=== Xbmc::AudioPlayer.skip_previous
+
+Skips to previous item on the playlist
+
+=== Xbmc::AudioPlayer.skip_next
+
+Skips to next item on the playlist
+
+=== Xbmc::AudioPlayer.big_skip_backward
+
+=== Xbmc::AudioPlayer.big_skip_forward
+
+=== Xbmc::AudioPlayer.small_skip_backward
+
+=== Xbmc::AudioPlayer.small_skip_forward
+
+=== Xbmc::AudioPlayer.rewind
+
+Rewind current playback
+
+=== Xbmc::AudioPlayer.forward
+
+Forward current playback
+
+=== Xbmc::AudioPlayer.get_time
+
+Retrieve time
+
+=== Xbmc::AudioPlayer.get_time_ms
+
+Retrieve time in MS
+
+=== Xbmc::AudioPlayer.get_percentage
+
+Retrieve percentage
+
+=== Xbmc::AudioPlayer.seek_time
+
+Seek to a specific time. Parameter integer in seconds
+
+=== Xbmc::AudioPlayer.seek_percentage
+
+Seek to a specific percentage. Parameter float or integer from 0 to 100
+
+=== Xbmc::AudioPlayer.record
+
+=== Xbmc::VideoPlayer.state
+
+Returns Current Playback state
+
+=== Xbmc::VideoPlayer.play_pause
+
+Pauses or unpause playback, returns new state
+
+=== Xbmc::VideoPlayer.stop
+
+Stops playback
+
+=== Xbmc::VideoPlayer.skip_previous
+
+Skips to previous item on the playlist
+
+=== Xbmc::VideoPlayer.skip_next
+
+Skips to next item on the playlist
+
+=== Xbmc::VideoPlayer.big_skip_backward
+
+=== Xbmc::VideoPlayer.big_skip_forward
+
+=== Xbmc::VideoPlayer.small_skip_backward
+
+=== Xbmc::VideoPlayer.small_skip_forward
+
+=== Xbmc::VideoPlayer.rewind
+
+Rewind current playback
+
+=== Xbmc::VideoPlayer.forward
+
+Forward current playback
+
+=== Xbmc::VideoPlayer.get_time
+
+Retrieve time
+
+=== Xbmc::VideoPlayer.get_time_ms
+
+Retrieve time in MS
+
+=== Xbmc::VideoPlayer.get_percentage
+
+Retrieve percentage
+
+=== Xbmc::VideoPlayer.seek_time
+
+Seek to a specific time. Parameter integer in seconds
+
+=== Xbmc::VideoPlayer.seek_percentage
+
+Seek to a specific percentage. Parameter float or integer from 0 to 100
+
+=== Xbmc::PicturePlayer.play_pause
+
+Pauses or unpause slideshow
+
+=== Xbmc::PicturePlayer.stop
+
+Stops slideshow
+
+=== Xbmc::PicturePlayer.skip_previous
+
+Skips to previous picture in the slideshow
+
+=== Xbmc::PicturePlayer.skip_next
+
+Skips to next picture in the slideshow
+
+=== Xbmc::PicturePlayer.move_left
+
+If picture is zoomed move viewport left otherwise skip previous
+
+=== Xbmc::PicturePlayer.move_right
+
+If picture is zoomed move viewport right otherwise skip previous
+
+=== Xbmc::PicturePlayer.move_down
+
+If picture is zoomed move viewport down
+
+=== Xbmc::PicturePlayer.move_up
+
+If picture is zoomed move viewport up
+
+=== Xbmc::PicturePlayer.zoom_out
+
+Zoom out once
+
+=== Xbmc::PicturePlayer.zoom_in
+
+Zoom in once
+
+=== Xbmc::PicturePlayer.zoom
+
+Zooms current picture. Parameter integer of zoom level
+
+=== Xbmc::PicturePlayer.rotate
+
+Rotates current picture
+
+=== Xbmc::VideoPlaylist.play
+
+=== Xbmc::VideoPlaylist.skip_previous
+
+=== Xbmc::VideoPlaylist.skip_next
+
+=== Xbmc::VideoPlaylist.get_items
+
+=== Xbmc::VideoPlaylist.add
+
+=== Xbmc::VideoPlaylist.clear
+
+Clear video playlist
+
+=== Xbmc::VideoPlaylist.shuffle
+
+Shuffle video playlist
+
+=== Xbmc::VideoPlaylist.un_shuffle
+
+UnShuffle video playlist
+
+=== Xbmc::AudioPlaylist.play
+
+=== Xbmc::AudioPlaylist.skip_previous
+
+=== Xbmc::AudioPlaylist.skip_next
+
+=== Xbmc::AudioPlaylist.get_items
+
+=== Xbmc::AudioPlaylist.add
+
+=== Xbmc::AudioPlaylist.clear
+
+Clear audio playlist
+
+=== Xbmc::AudioPlaylist.shuffle
+
+Shuffle audio playlist
+
+=== Xbmc::AudioPlaylist.un_shuffle
+
+UnShuffle audio playlist
+
+=== Xbmc::Playlist.create
+
+Creates a virtual playlist from a given one from a file
+
+=== Xbmc::Playlist.destroy
+
+Destroys a virtual playlist
+
+=== Xbmc::Playlist.get_items
+
+Retrieve items in the playlist. Parameter example {"playlist": "music" }. playlist optional.
+
+=== Xbmc::Playlist.add
+
+Add items to the playlist. Parameter example {"playlist": "music", "file": "/foo/bar.mp3" }. playlist optional.
+
+=== Xbmc::Playlist.remove
+
+Remove items in the playlist. Parameter example {"playlist": "music", "item": 0 }. playlist optional.
+
+=== Xbmc::Playlist.swap
+
+Swap items in the playlist. Parameter example {"playlist": "music", "item1": 0, "item2": 1 }. playlist optional.
+
+=== Xbmc::Playlist.shuffle
+
+Shuffle playlist
+
+=== Xbmc::Playlist.un_shuffle
+
+UnShuffle playlist
+
+=== Xbmc::Files.get_sources
+
+Get the sources of the media windows. Parameter example {"media": "video"}. Media can be video, music, pictures or files
+
+=== Xbmc::Files.download
+
+Specify a file to download to get info about how to download it, i.e a proper URL
+
+=== Xbmc::Files.get_directory
+
+Retrieve the specified directory. Parameter example {"directory": "foo/bar", "media": "video"}. Media can be video, music, pictures or files
+
+=== Xbmc::AudioLibrary.get_artists
+
+Retrieve all artists
+
+=== Xbmc::AudioLibrary.get_albums
+
+Retrieve all albums from specified artist or genre, Fields: album_description, album_theme, album_mood, album_style, album_type, album_label, album_artist, album_genre, album_rating, album_title
+
+=== Xbmc::AudioLibrary.get_songs
+
+Retrieve all songs from specified album, artist or genre
+
+=== Xbmc::AudioLibrary.scan_for_content
+
+=== Xbmc::VideoLibrary.get_movies
+
+Retrieve all movies. Parameter example { "fields": ["plot"], "sortmethod": "title", "sortorder": "ascending", "start": 0, "end": 3}. fields, sortorder, sortmethod, start and end are optional
+
+=== Xbmc::VideoLibrary.get_tv_shows
+
+Parameter example { "fields": ["plot"], "sortmethod": "label", "sortorder": "ascending", "start": 0, "end": 3}. sortorder, sortmethod, start and end are optional
+
+=== Xbmc::VideoLibrary.get_seasons
+
+Parameter example { "tvshowid": 0, "fields": ["season"], "sortmethod": "label", "sortorder": "ascending", "start": 0, "end": 3}. sortorder, sortmethod, start and end are optional
+
+=== Xbmc::VideoLibrary.get_episodes
+
+Parameter example { "tvshowid": 0, "season": 1, "fields": ["plot"], "sortmethod": "episode", "sortorder": "ascending", "start": 0, "end": 3}. sortorder, sortmethod, start and end are optional
+
+=== Xbmc::VideoLibrary.get_music_videos
+
+Parameter example { "artistid": 0, "albumid": 0, "fields": ["plot"], "sortmethod": "artistignorethe", "sortorder": "ascending", "start": 0, "end": 3}. sortorder, sortmethod, start and end are optional
+
+=== Xbmc::VideoLibrary.get_recently_added_movies
+
+Retrieve all recently added movies. Parameter example { "fields": ["plot"], "sortmethod": "title", "sortorder": "ascending", "start": 0, "end": 3}. fields, sortorder, sortmethod, start and end are optional
+
+=== Xbmc::VideoLibrary.get_recently_added_episodes
+
+Retrieve all recently added episodes. Parameter example { "fields": ["plot"], "sortmethod": "title", "sortorder": "ascending", "start": 0, "end": 3}. fields, sortorder, sortmethod, start and end are optional
+
+=== Xbmc::VideoLibrary.get_recently_added_music_videos
+
+Retrieve all recently added music videos. Parameter example { "fields": ["plot"], "sortmethod": "title", "sortorder": "ascending", "start": 0, "end": 3}. fields, sortorder, sortmethod, start and end are optional
+
+=== Xbmc::VideoLibrary.scan_for_content
+
+=== Xbmc::System.shutdown
+
+=== Xbmc::System.suspend
+
+=== Xbmc::System.hibernate
+
+=== Xbmc::System.reboot
+
+=== Xbmc::System.get_info_labels
+
+Retrieve info labels about the system
+
+=== Xbmc::System.get_info_booleans
+
+Retrieve info booleans about the system
+
+=== Xbmc::XBMC.get_volume
+
+Retrieve the current volume
+
+=== Xbmc::XBMC.set_volume
+
+Set volume. Parameter integer between 0 amd 100
+
+=== Xbmc::XBMC.toggle_mute
+
+Toggle mute
+
+=== Xbmc::XBMC.play
+
+Starts playback
+
+=== Xbmc::XBMC.start_slideshow
+
+Starts slideshow. Parameter example {"directory": "/foo/", "random": true, "recursive": true} or just string to recursively and random run directory
+
+=== Xbmc::XBMC.log
+
+Logs a line in the xbmc.log. Parameter example {"message": "foo", "level": "info"} or just a string to log message with level debug
+
+=== Xbmc::XBMC.quit
+
+Quit xbmc
+
 == Issues
 
 * No unit tests
