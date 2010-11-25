@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{xbmc-client}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Christoph Olszowka"]
   s.date = %q{2010-11-25}
-  s.description = %q{A simple API client for the XBMC JSON-RPC API}
+  s.description = %q{A simple API client for the XBMC Media Center JSON-RPC API}
   s.email = %q{christoph at olszowka de}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "examples/audio_library.rb",
+     "examples/example_environment.rb",
      "lib/ruby_ext.rb",
      "lib/xbmc-client.rb",
      "lib/xbmc/command.rb",
@@ -38,11 +39,12 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{A simple API client for the XBMC JSON-RPC API}
+  s.summary = %q{A simple API client for the XBMC Media Center JSON-RPC API}
   s.test_files = [
     "test/helper.rb",
      "test/test_xbmc-client.rb",
-     "examples/audio_library.rb"
+     "examples/audio_library.rb",
+     "examples/example_environment.rb"
   ]
 
   if s.respond_to? :specification_version then
