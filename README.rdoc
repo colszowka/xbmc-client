@@ -5,11 +5,13 @@ This is a simple Ruby client for the XBMC (XBox Media Center) JSON-RPC API.
 It does not define all the API methods explicitly, but rather loads and defines them
 on the fly by pulling the available namespaces and methods from the <code>JSONRPC.Introspect</code>
 call baked into the XBMC Api and thus has all methods described there available via
-Xbmc::NAMESPACE.method_name_in_underscore_writing, so for example the JSON RPC call 
-`AudioPlayer.PlayPause` becomes `Xbmc::AudioPlayer.play_pause`.
+<code>Xbmc::NAMESPACE.method_name_in_underscore_writing</code>, so for example the JSON RPC call 
+<code>AudioPlayer.PlayPause</code> becomes <code>Xbmc::AudioPlayer.play_pause</code> in Ruby.
 
 Parameters can be passed in to all methods via the optional first argument to each
-method call, which is expected to be a hash: `Xbmc::AudioLibrary.get_songs(:albumid => 1)`
+method call, which is expected to be a hash: 
+
+  Xbmc::AudioLibrary.get_songs(:albumid => 1)
 
 Note that this is a very early release and is considered experimental. There will
 be bugs.
@@ -47,8 +49,8 @@ The client is being developed against Ruby 1.9.2, but should work with Ruby 1.8 
   Xbmc.invoke_and_process('JSONRPC.Introspect, :getdescriptions => 'true') # Will return the JSON-parsed response body's result subcollection
   
 
-As you'll notice, it tries to automatically pull the correct collection for `get_xyz`
-calls, which means that you don't have to go to the subcollection [:result][:artists] in the
+As you'll notice, it tries to automatically pull the correct collection for <code>get_xyz</code>
+calls, which means that you don't have to go to the subcollection <code>[:result][:artists]</code> in the
 above example like you would if the response would be returned unprocessed.
 
 See the examples directory in the repository for further usage examples!
