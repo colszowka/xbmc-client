@@ -38,7 +38,9 @@ class Xbmc::Command
       klass = klass_name.constantize
     end
   
+    # Need to assign instance to local var because "self" is out of scope inside the method definition
     command_object = self
+    # Define class method in corresponding namespace class
     klass.metaclass.send(:define_method, method_name.to_sym) do |*args|
       command_object.invoke(*args)
     end
