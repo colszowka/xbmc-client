@@ -1,6 +1,6 @@
 = XBMC-Client
 
-This is a simple Ruby client for the XBMC Media Center JSON-RPC API.
+This is a simple Ruby HTTP-based client for the XBMC Media Center JSON-RPC API.
 
 It does not define all the API methods explicitly, but rather loads and defines them
 on the fly by pulling the available namespaces and methods from the <code>JSONRPC.Introspect</code>
