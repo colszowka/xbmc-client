@@ -5,12 +5,18 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "xbmc-client"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
-    gem.email = ""christoph"
+    gem.summary = %Q{A simple API client for the XBMC JSON-RPC API}
+    gem.description = %Q{A simple API client for the XBMC JSON-RPC API}
+    gem.email = "christoph at olszowka de"
     gem.homepage = "http://github.com/colszowka/xbmc-client"
-    gem.authors = [""Christoph"]
-    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
+    
+    gem.add_dependency 'httparty', ">= 0.6.0"
+    gem.add_dependency 'json', ">= 1.4.5"
+    gem.add_dependency 'activesupport', ">= 3.0.0"
+    gem.add_dependency 'i18n'
+    
+    gem.authors = ["Christoph Olszowka"]
+    gem.add_development_dependency "shoulda", "2.10.3"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new

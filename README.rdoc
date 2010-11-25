@@ -1,6 +1,68 @@
-= xbmc-client
+= XBMC-Client
 
-Description goes here.
+This is a simple Ruby client for the XBMC (XBox Media Center) JSON-RPC API.
+
+It does not define all the API methods explicitly, but rather loads and defines them
+on the fly by pulling the available namespaces and methods from the JSONRPC.Introspect
+call baked into the XBMC Api and thus has all methods described there available via
+Xbmc::NAMESPACE.method_name_in_underscore_writing, so for example the JSON RPC call 
+`AudioPlayer.PlayPause` becomes `Xbmc::AudioPlayer.play_pause`.
+
+Parameters can be passed in to all methods via the optional first argument to each
+method call, which is expected to be a hash: `Xbmc::AudioLibrary.get_songs(:albumid => 1)`
+
+Note that this is a very early release and is considered experimental. There will
+be bugs.
+
+The client is being developed against Ruby 1.9.2, but should work with Ruby 1.8 as well.
+
+== Install
+
+  gem install xbmc-client
+  
+== Usage
+
+  require 'pp'
+  require 'xbmc-client'
+  
+  # Set up the url and auth credentials
+  Xbmc.base_uri "http://localhost:8435"
+  Xbmc.basic_auth "xbmc", "xbmc"
+  Xbmc.load_api! # This will call JSONRPC.Introspect and create all subclasses and methods dynamically
+  
+  pp Xbmc::AudioLibrary.get_artists
+  # > [{"artistid"=>1,
+  #    "fanart"=>"special://masterprofile/Thumbnails/Music/Fanart/c03803be.tbn",
+  #    "label"=>"The Weakerthans"}, ... ]
+  
+  pp Xbmc::AudioLibrary.get_songs(:albumid => 1)
+  # [{"fanart"=>"special://masterprofile/Thumbnails/Music/Fanart/c03803be.tbn",
+  #   "file"=>
+  #   "/some/path/to/a/file.mp3",
+  #   "label"=>"Elegy for Elsabet",
+  #   "songid"=>20}, ...]
+  
+  # You can interact with the raw api with:
+  Xbmc.invoke_method('JSONRPC.Introspect', :getdescriptions => 'true') # Will return the raw response
+  Xbmc.invoke_and_process('JSONRPC.Introspect, :getdescriptions => 'true') # Will return the JSON-parsed response body's result subcollection
+  
+
+As you'll notice, it tries to automatically pull the correct collection for `get_xyz`
+calls, which means that you don't have to go to the subcollection [:result][:artists] in the
+above example like you would if the response would be returned unprocessed.
+
+See the examples directory in the repository for further usage examples!
+
+Also, be sure to check out the API docs at the XBMC wiki: 
+http://wiki.xbmc.org/index.php?title=JSON_RPC
+
+== Issues
+
+* No unit tests
+* No parameter validation
+* Fields (i.e. album details etc.) should be automatically requested by the api, but this would
+  currently require the JSONRPC.Introspect Api method to return a collection of available fields
+  for each method.
 
 == Note on Patches/Pull Requests
  
@@ -14,4 +76,4 @@ Description goes here.
 
 == Copyright
 
-Copyright (c) 2010 "Christoph. See LICENSE for details.
+Copyright (c) 2010 Christoph Olszowka. See LICENSE for details.
