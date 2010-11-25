@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "xbmc-client"
-    gem.summary = %Q{A simple API client for the XBMC JSON-RPC API}
-    gem.description = %Q{A simple API client for the XBMC JSON-RPC API}
+    gem.summary = %Q{A simple API client for the XBMC Media Center JSON-RPC API}
+    gem.description = %Q{A simple API client for the XBMC Media Center JSON-RPC API}
     gem.email = "christoph at olszowka de"
     gem.homepage = "http://github.com/colszowka/xbmc-client"
     
