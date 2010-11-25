@@ -19,13 +19,20 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
      ".gitignore",
+     ".rvmrc",
+     "Gemfile",
+     "Gemfile.lock",
      "LICENSE",
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "examples/audio_library.rb",
+     "lib/ruby_ext.rb",
      "lib/xbmc-client.rb",
+     "lib/xbmc/command.rb",
      "test/helper.rb",
-     "test/test_xbmc-client.rb"
+     "test/test_xbmc-client.rb",
+     "xbmc-client.gemspec"
   ]
   s.homepage = %q{http://github.com/colszowka/xbmc-client}
   s.rdoc_options = ["--charset=UTF-8"]
