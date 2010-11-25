@@ -1,10 +1,6 @@
-require 'pp'
-require './' + File.join(File.dirname(__FILE__), '../lib', 'xbmc-client')
+# Some example calls for interacting with the Audio Library in XBMC
 
-Xbmc.base_uri "http://localhost:8435"
-Xbmc.basic_auth "xbmc", "xbmc"
-
-Xbmc.load_api!
+require "./" + File.join(File.dirname(__FILE__), 'example_environment')
 
 pp Xbmc::AudioLibrary.get_artists
 puts "="*60
