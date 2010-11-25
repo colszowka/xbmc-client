@@ -4,6 +4,7 @@ require 'bundler'
 Bundler.require(:default)
 
 $LOAD_PATH.unshift(File.dirname(__FILE__))
+require 'httparty'
 require 'ruby_ext'
 require 'active_support/core_ext'
 
