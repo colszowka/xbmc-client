@@ -36,7 +36,25 @@ class Xbmc
 
     # Returns an array of available api commands instantiated as Xbmc::Command objects
     def commands
-      @commands ||= invoke_and_process("JSONRPC.Introspect", :getdescriptions => true)[:commands].map {|c| Xbmc::Command.new(c)}
+      # Get API version number because of changes in the API starting with Eden (v3)
+      version = invoke_and_process("JSONRPC.Version")
+
+      if (version["version"] == 2)
+      # XBMC Dharma
+        @commands ||= invoke_and_process("JSONRPC.Introspect", :getdescriptions => true)[:commands].map {|c| Xbmc::Command.new(c)}
+      else
+      # XBMC Eden 
+        @commands ||= invoke_and_process("JSONRPC.Introspect", :getdescriptions => true)[:methods].map {|c| 
+          # Get the command specification
+          attrList = c.at(1)
+          
+          # Add command name to the specification
+          attrList["command"] = c.at(0)
+          
+          # Process the command as usual
+          Xbmc::Command.new(attrList)
+        }
+      end
     end
 
     # Loads the available commands via JSONRPC.Introspect and defines the namespace classes and corresponding methods
