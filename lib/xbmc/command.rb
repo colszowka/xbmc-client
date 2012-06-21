@@ -49,9 +49,13 @@ class Xbmc::Command
   # Will return the subcollection "xyz" from the response for "get_xyz" commands when
   # the collection is present, or just the result collection otherwise.
   def process_result(result)
-    if method_name =~ /^get_(.+)/ and (collection = result[$1.gsub('_', '')]).present?
-      return collection
-    else
+    begin
+      if method_name =~ /^get_(.+)/ and (collection = result[$1.gsub('_', '')]).present?
+        return collection
+      else
+        return result
+      end
+    rescue
       return result
     end
   end
