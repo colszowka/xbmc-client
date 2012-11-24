@@ -1,8 +1,3 @@
-require 'rubygems'
-require 'bundler'
-
-Bundler.require(:default)
-
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'httparty'
 require 'ruby_ext'
