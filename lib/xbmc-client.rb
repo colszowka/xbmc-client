@@ -25,7 +25,9 @@ class Xbmc
     # Raw API interaction: Invoke the given JSON RPC Api call and return the raw response (which is an instance of
     # HTTParty::Response)
     def invoke_method(method, params={})
-      response = post('/jsonrpc', :body => {"jsonrpc" => "2.0", "params" => params, "id" => "1", "method" => method}.to_json)
+      response = post('/jsonrpc',
+                      :body => {"jsonrpc" => "2.0", "params" => params, "id" => "1", "method" => method}.to_json,
+                      :headers => {'Content-Type' => 'application/json'})
       raise Xbmc::UnauthorizedError, "Could not authorize with XBMC. Did you set up your credentials for basic_auth using Xbmc.basic_auth 'user', 'pass'?" if response.response.class == Net::HTTPUnauthorized
       response
       
