@@ -48,8 +48,8 @@ task :test => :check_dependencies
 
 task :default => :test
 
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
+require 'rdoc/task'
+RDoc::Task.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
@@ -63,8 +63,8 @@ namespace :rdoc do
   task :apidoc do
     require File.join(File.dirname(__FILE__), 'lib/xbmc-client')
     # Configure to your settings!
-    Xbmc.base_uri "http://localhost:8435"
-    Xbmc.basic_auth "xbmc", "xbmc"
+    Xbmc.base_uri (ENV['XBMC_URI'].nil? ? "http://localhost:8435" : ENV['XBMC_URI'])
+    Xbmc.basic_auth (ENV['XBMC_USER'].nil? ? "xbmc" : ENV['XBMC_USER']), (ENV['XBMC_PASS'].nil? ? "xbmc" : ENV['XBMC_PASS'])
     
     puts "== Available API Methods", ""
     puts "Please note that the API is loaded dynamically and thus this ultimately depends on your version of XBMC. This listing is generated automatically using <code>rake rdoc:apidoc</code>", ""
