@@ -14,7 +14,7 @@ class Xbmc
     # API interaction: Invokes the given method with given params, parses the JSON response body, maps it to
     # a HashWithIndifferentAccess and returns the :result subcollection
     def invoke_and_process(method, params={})
-      JSON.parse(invoke_method(method, params).body).with_indifferent_access[:result]
+      invoke_method(method, params).parsed_response.with_indifferent_access[:result]
     end
     
     # Raw API interaction: Invoke the given JSON RPC Api call and return the raw response (which is an instance of
